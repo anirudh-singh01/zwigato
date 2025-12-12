@@ -1,5 +1,7 @@
 package com.example.zwigato.model;
 
+import com.example.zwigato.utility.enums.FoodCategory;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,7 +32,11 @@ public class MenuItem {
     @Column
     private boolean isVeg;
 
+    @OneToMany(mappedBy = "menuItem")
+    @JsonIgnore
     List<OrderItem> orderItems;
 
+    @ManyToMany
+    @JoinTable
     private List<Restaurant> restaurants;
 }
